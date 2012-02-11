@@ -1,0 +1,32 @@
+* mrc-stefil-extras
+A helper function for using stefil. This used to live in rep-theatre,
+but I didn't want non-testing systems to depend on stefil, so I split
+it out.
+
+* Examples
+
+** are
+~are~ lets me write tests with a series of assertions without so much
+noise. It uses ~stefil~ but could easily be switched if I switch test
+frameworks.
+
+#+BEGIN_SRC lisp
+  (deftest addition ()
+    (are (= 5 (+ 2 3))
+         (= -5 (+ -2 -3))
+         (= 10 (+ 2 3 5))))
+#+END_SRC lisp
+
+* Use
+Add the project to your asdf search path
+(e.g. ~(push #P"../mrc-stefil-extras/" asdf:*central-registry*)~)
+then:
+#+BEGIN_SRC lisp
+  (ql:quickload :mrc-stefil-extras)
+#+END_SRC
+
+* Test
+#+BEGIN_SRC lisp
+  (ql:quickload :mrc-stefil-extras-tests)
+  (t-mrc-stefil-extras:test-all)
+#+END_SRC
